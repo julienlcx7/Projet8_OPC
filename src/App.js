@@ -2,40 +2,28 @@ import './App.scss';
 import Navbar from './Components/Navbar/Navbar.js';
 import Card from './Components/Card/Card.js';
 import Footer from './Components/Footer/Footer.js';
-import About from './About.js';
-import Error from './Error.js';
-import { Logement } from './Logement.js';
-import { createBrowserRouter,RouterProvider } from 'react-router-dom';
-
-const router = createBrowserRouter([
-  {
-    path:'/',
-    element:<div className="App">
-              <Navbar/>
-              <Card/>
-              <Footer/>
-            </div>
-  },
-  {
-    path: '/about',
-    element: <About/>
-  },
-  {
-    path: 'logement/:id_url',
-    element: <Logement/>
-  },
-  {
-    path:'*',
-    element: <Error/>
-  }
-
-])
+import Main from './pages/main.js';
+import About from './pages/About.js';
+import Error from './_utils/Error.js';
+import { Logement } from './pages/Logement.js';
+import { BrowserRouter, createBrowserRouter,Route,RouterProvider, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    <RouterProvider router={router}/>
+    <div className='App'>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Main/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='logement/:id_url' element={<Logement/>}/>
+        <Route path='*' element={<Error/>}/>
+      </Routes>
+   </BrowserRouter>
+    </div>
+    
   );
 
 }
 
 export default App;
+
